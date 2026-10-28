@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B12">
+  <title>Messages – TREIIZE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+  <main class="ecran ecran-chat">
+
+    <header class="entete">
+      <a class="btn-icone" href="match.html" aria-label="Retour aux matchs">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></svg>
+      </a>
+      <div class="avatar" id="avatar">AY</div>
+      <div class="qui">
+        <div class="qui-nom" id="nom">Aya</div>
+        <div class="qui-statut"><span class="point" aria-hidden="true"></span><span id="statut">En ligne</span></div>
+      </div>
+      <button class="btn-icone" type="button" id="btn-signaler" aria-label="Signaler ou bloquer">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M12 8v5"/><path d="M12 16.5v.5"/></svg>
+      </button>
+    </header>
+
+    <div class="fil" id="fil" aria-live="polite">
+      <div class="conseil">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C6FF3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
+        Une rencontre en vrai ? Choisis un lieu public et préviens un proche.
+      </div>
+      <div class="date">MATCH · AUJOURD'HUI</div>
+      <!-- Les messages sont ajoutés ici par js/chat.js -->
+    </div>
+
+    <form class="saisie" id="saisie">
+      <button class="btn-icone btn-defi" type="button" id="btn-nouveau-defi" aria-label="Lancer un nouveau défi">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+      </button>
+      <label class="invisible" for="message">Message</label>
+      <input class="champ" id="message" type="text" maxlength="500" autocomplete="off" placeholder="Écris ton message…">
+      <button class="btn-icone btn-envoyer" type="submit" aria-label="Envoyer">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+
+    <!-- Fenêtre de signalement -->
+    <div class="fenetre" id="fenetre-signaler" role="dialog" aria-modal="true" aria-labelledby="titre-signaler" hidden>
+      <div class="fenetre-boite">
+        <h2 id="titre-signaler">Un souci avec ce joueur ?</h2>
+        <p>Ton signalement est anonyme. Notre équipe le vérifie rapidement.</p>
+        <button class="btn btn-secondaire" type="button" data-fermer>Signaler un comportement</button>
+        <button class="btn btn-secondaire" type="button" data-fermer>Bloquer</button>
+        <button class="btn btn-principal" type="button" data-fermer>Annuler</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="stockage.js"></script>
+  <script src="xp.js"></script>
+  <script src="joueurs.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

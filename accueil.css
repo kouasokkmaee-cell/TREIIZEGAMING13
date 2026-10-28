@@ -1,0 +1,111 @@
+/* ===== Page d'accueil ===== */
+
+/* Sol en grille rétro qui défile vers nous */
+.sol-grille {
+  position: absolute; left: -200px; right: -200px; bottom: -40px; height: 420px;
+  transform: perspective(260px) rotateX(62deg); transform-origin: bottom center;
+  background-image:
+    linear-gradient(rgba(198,255,61,.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,77,141,.28) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: sol 1.1s linear infinite;
+  opacity: .55;
+}
+@keyframes sol { from { background-position: 0 0; } to { background-position: 0 48px; } }
+
+/* Brume qui adoucit l'horizon de la grille */
+.brume {
+  position: absolute; left: 0; right: 0; bottom: 300px; height: 160px;
+  background: var(--fond); filter: blur(30px); opacity: .9;
+}
+
+/* Grand « 13 » en contour qui flotte */
+.grand-13 {
+  position: absolute; right: -36px; top: 92px;
+  font-family: var(--titre); font-weight: 700; font-size: 260px; line-height: 1;
+  color: transparent; -webkit-text-stroke: 2px rgba(255,77,141,.35);
+  animation: flotte 6s ease-in-out infinite;
+}
+@keyframes flotte {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-14px) rotate(-4deg); }
+}
+
+/* Petits pixels qui clignotent */
+.pixels {
+  position: absolute; left: 32px; top: 140px;
+  display: grid; grid-template-columns: repeat(3, 8px); gap: 4px;
+}
+.pixels span { width: 8px; height: 8px; background: var(--accent); animation: pixel 1.6s ease-in-out infinite; }
+.pixels span.rose { background: var(--rose); }
+.pixels span:nth-child(2) { animation-delay: .2s; }
+.pixels span:nth-child(3) { animation-delay: .4s; }
+.pixels span:nth-child(4) { animation-delay: .6s; }
+.pixels span:nth-child(5) { animation-delay: .8s; }
+.pixels span:nth-child(6) { animation-delay: 1s; }
+@keyframes pixel { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+
+.contenu {
+  position: relative; z-index: 2; flex-grow: 1;
+  display: flex; flex-direction: column;
+  padding: 56px 28px 40px;
+}
+
+.haut { display: flex; justify-content: space-between; align-items: center; }
+.pays { font-family: var(--titre); font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--gris); }
+.badge-18 {
+  font-family: var(--titre); font-weight: 700; font-size: 12px;
+  padding: 4px 10px; border: 1.5px solid var(--rose); color: var(--rose); border-radius: 4px;
+}
+
+/* Logo avec effet « bug » (glitch) */
+.logo { margin-top: 140px; }
+.logo-mot {
+  position: relative; margin: 0;
+  font-family: var(--titre); font-weight: 700; font-size: 66px; line-height: .9; letter-spacing: -1px;
+}
+.logo-base { position: relative; color: var(--texte); }
+.double-i { color: var(--accent); animation: pause 2.4s steps(1) infinite; }
+@keyframes pause { 0%, 70%, 100% { opacity: 1; } 75%, 85% { opacity: .35; } }
+.glitch { position: absolute; left: 0; top: 0; }
+.glitch-a { color: var(--rose); animation: glitchA 3.2s steps(1) infinite; }
+.glitch-b { color: var(--accent); animation: glitchB 3.2s steps(1) infinite; }
+@keyframes glitchA {
+  0%, 86%, 100% { transform: translate(0,0); clip-path: inset(0 0 0 0); }
+  88% { transform: translate(-4px,1px); clip-path: inset(10% 0 55% 0); }
+  91% { transform: translate(3px,-2px); clip-path: inset(60% 0 8% 0); }
+  94% { transform: translate(-2px,0); clip-path: inset(30% 0 40% 0); }
+}
+@keyframes glitchB {
+  0%, 86%, 100% { transform: translate(0,0); clip-path: inset(0 0 0 0); }
+  88% { transform: translate(4px,-1px); clip-path: inset(50% 0 20% 0); }
+  91% { transform: translate(-3px,2px); clip-path: inset(5% 0 70% 0); }
+  94% { transform: translate(2px,1px); clip-path: inset(70% 0 5% 0); }
+}
+.logo-sous {
+  display: flex; align-items: center; gap: 10px; margin-top: 10px;
+  font-family: var(--titre); font-weight: 700; font-size: 20px; letter-spacing: 9px; color: var(--accent);
+}
+.curseur { width: 12px; height: 22px; background: var(--accent); animation: clignote 1s steps(1) infinite; }
+
+.accroche { margin: 28px 0 0; font-size: 26px; line-height: 1.2; font-weight: 700; max-width: 300px; }
+.vert { color: var(--accent); }
+.description { margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--gris); max-width: 310px; }
+
+/* Bandeau de jeux qui défile */
+.bandeau {
+  margin: 28px -28px 0; overflow: hidden; padding: 12px 0;
+  border-top: 1px solid var(--bord); border-bottom: 1px solid var(--bord);
+}
+.bandeau-piste { display: flex; gap: 10px; width: max-content; animation: defile 14s linear infinite; }
+@keyframes defile { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.bandeau-puce {
+  font-family: var(--titre); font-weight: 700; font-size: 14px;
+  padding: 6px 14px; border-radius: 999px; border: 1.5px solid var(--bord-2); white-space: nowrap;
+}
+
+.espace { flex-grow: 1; min-height: 32px; }
+
+.actions { display: flex; flex-direction: column; gap: 14px; }
+.btn-start { min-height: 58px; font-size: 18px; animation: pulse 2s ease-out infinite; }
+.mention { margin: 4px 0 0; text-align: center; font-size: 12px; color: var(--gris); }

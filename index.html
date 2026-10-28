@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B12">
+  <title>TREIIZE – Trouve ton Player 2</title>
+  <meta name="description" content="TREIIZE, la ville du gaming ivoirien : rencontre, apprends, joue.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="accueil.css">
+</head>
+<body>
+  <main class="ecran accueil">
+
+    <!-- Décor animé (purement visuel) -->
+    <div class="sol-grille" aria-hidden="true"></div>
+    <div class="brume" aria-hidden="true"></div>
+    <div class="grand-13" aria-hidden="true">13</div>
+    <div class="pixels" aria-hidden="true">
+      <span></span><span></span><span></span><span class="rose"></span><span></span><span class="rose"></span>
+    </div>
+
+    <div class="contenu">
+      <div class="haut apparait">
+        <span class="pays">CÔTE D'IVOIRE</span>
+        <span class="badge-18">18+</span>
+      </div>
+
+      <div class="logo apparait" style="animation-delay:.1s">
+        <h1 class="logo-mot">
+          <span class="glitch glitch-a" aria-hidden="true">TREIIZE</span>
+          <span class="glitch glitch-b" aria-hidden="true">TREIIZE</span>
+          <!-- Le double I en vert : « II » = 2 = Player 2, et c'est aussi le bouton pause -->
+          <span class="logo-base">TRE<span class="double-i">II</span>ZE</span>
+          <span class="invisible"> Gaming City</span>
+        </h1>
+        <div class="logo-sous" aria-hidden="true">
+          <span>GAMING CITY</span><span class="curseur"></span>
+        </div>
+      </div>
+
+      <p class="accroche apparait" style="animation-delay:.25s">
+        Trouve ton <span class="vert">duo</span>.<br>Et peut-être plus.
+      </p>
+      <p class="description apparait" style="animation-delay:.35s">
+        Plus jamais de duo avec des inconnus que tu ne comprends pas. Joue avec des gamers d'ici, qui parlent comme toi.
+      </p>
+
+      <!-- Bandeau de jeux qui défile (rempli par le JavaScript plus bas) -->
+      <div class="bandeau apparait" style="animation-delay:.45s" aria-label="Jeux disponibles">
+        <div class="bandeau-piste" id="bandeau"></div>
+      </div>
+
+      <div class="espace"></div>
+
+      <div class="actions apparait" style="animation-delay:.55s">
+        <a class="btn btn-principal btn-start" href="profil.html">
+          APPUIE SUR START
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-secondaire" href="hub.html">J'ai déjà un compte</a>
+        <p class="mention">Réservé aux 18 ans et plus · Profils vérifiés</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Liste des jeux affichés dans le bandeau. Ajoute ou retire des jeux ici.
+    var jeux = ['CALL OF DUTY', 'FORTNITE', 'FIFA / EA FC', 'GTA', 'FREE FIRE', 'eFOOTBALL'];
+    var bandeau = document.getElementById('bandeau');
+    // On met la liste deux fois pour que le défilement tourne en boucle sans coupure
+    jeux.concat(jeux).forEach(function (nom, i) {
+      var puce = document.createElement('span');
+      puce.className = 'bandeau-puce';
+      puce.textContent = nom;
+      if (i >= jeux.length) puce.setAttribute('aria-hidden', 'true');
+      bandeau.appendChild(puce);
+    });
+  </script>
+</body>
+</html>

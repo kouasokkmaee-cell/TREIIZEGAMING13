@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B12">
+  <title>Duo Zone – TREIIZE CITY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="duo.css">
+</head>
+<body>
+  <main class="ecran">
+
+    <header class="entete apparait">
+      <div class="sur-titre">TRE<span class="ii">II</span>ZE CITY</div>
+      <h1 class="titre">DUO ZONE</h1>
+      <p class="intro">Plus jamais de duo avec des inconnus que tu ne comprends pas. Trouve un joueur d'ici, dispo maintenant.</p>
+    </header>
+
+    <!-- ===== Étape 1 : je joue maintenant ===== -->
+    <section class="etape" id="etape-choix">
+      <fieldset class="groupe apparait" style="animation-delay:.05s">
+        <legend class="etiquette">Tu lances quoi ?</legend>
+        <div class="choix-grille" id="choix-jeu"></div>
+      </fieldset>
+
+      <fieldset class="groupe apparait" style="animation-delay:.1s">
+        <legend class="etiquette">Sur quelle plateforme ?</legend>
+        <div class="choix-ligne" id="choix-plateforme"></div>
+      </fieldset>
+
+      <fieldset class="groupe apparait" style="animation-delay:.15s">
+        <legend class="etiquette">Quel mode ?</legend>
+        <div class="choix-ligne" id="choix-mode"></div>
+      </fieldset>
+
+      <label class="micro apparait" style="animation-delay:.2s">
+        <span class="micro-texte">
+          <strong>J'ai un micro</strong>
+          <small>Pour te parler en vocal pendant la partie</small>
+        </span>
+        <input type="checkbox" id="micro" checked>
+        <span class="interrupteur" aria-hidden="true"></span>
+      </label>
+
+      <button class="btn btn-principal btn-go apparait" style="animation-delay:.25s" type="button" id="btn-chercher">
+        <span class="point-live" aria-hidden="true"></span>
+        JE JOUE MAINTENANT
+      </button>
+    </section>
+
+    <!-- ===== Étape 2 : recherche ===== -->
+    <section class="etape etape-radar" id="etape-recherche" hidden>
+      <div class="radar" aria-hidden="true">
+        <span class="radar-balai"></span>
+        <span class="radar-anneau a1"></span><span class="radar-anneau a2"></span>
+        <span class="radar-moi" id="radar-moi">?</span>
+        <span class="radar-pt p1"></span><span class="radar-pt p2"></span><span class="radar-pt p3"></span><span class="radar-pt p4"></span>
+      </div>
+      <p class="recherche-titre" role="status" id="recherche-titre">Recherche de joueurs…</p>
+      <p class="recherche-texte" id="recherche-texte"></p>
+      <button class="btn btn-secondaire" type="button" id="btn-annuler">Annuler</button>
+    </section>
+
+    <!-- ===== Étape 3 : joueurs dispos ===== -->
+    <section class="etape" id="etape-resultats" hidden>
+      <div class="resultats-tete">
+        <h2 class="bloc-titre" id="resultats-titre">Dispos maintenant</h2>
+        <button class="lien" type="button" id="btn-modifier">Modifier</button>
+      </div>
+      <p class="resultats-filtre" id="resultats-filtre"></p>
+      <ul class="joueurs" id="joueurs"></ul>
+      <p class="vide" id="vide" hidden>Personne de dispo sur ce jeu pour l'instant. Réessaie dans quelques minutes, c'est souvent plus animé le soir.</p>
+    </section>
+
+    <!-- ===== Étape 4 : lobby ===== -->
+    <section class="etape" id="etape-lobby" hidden>
+      <div class="lobby">
+        <p class="lobby-sur">C'EST PARTI</p>
+        <h2 class="lobby-titre">Votre lobby est prêt</h2>
+        <div class="lobby-duo">
+          <div class="lobby-joueur">
+            <span class="lobby-av" id="lobby-moi-av">?</span>
+            <strong id="lobby-moi-nom">Toi</strong>
+            <code id="lobby-moi-id"></code>
+          </div>
+          <span class="lobby-vs" aria-hidden="true">+</span>
+          <div class="lobby-joueur">
+            <span class="lobby-av" id="lobby-lui-av">?</span>
+            <strong id="lobby-lui-nom"></strong>
+            <code id="lobby-lui-id"></code>
+          </div>
+        </div>
+        <p class="lobby-jeu" id="lobby-jeu"></p>
+        <ol class="lobby-etapes">
+          <li>Ajoute ton duo dans le jeu avec son identifiant.</li>
+          <li>Invite-le dans ton groupe.</li>
+          <li>Lancez la partie. Bonne game !</li>
+        </ol>
+        <a class="btn btn-principal" href="chat.html" id="btn-chat">ÉCRIRE À MON DUO</a>
+        <button class="btn btn-secondaire" type="button" id="btn-nouveau">Chercher un autre duo</button>
+        <p class="lobby-securite">Ne partage jamais ton mot de passe ni tes codes de jeu. Ton identifiant de jeu suffit pour t'ajouter.</p>
+      </div>
+    </section>
+
+    <p class="note-demo">Version de démonstration : les joueurs dispos sont fictifs.</p>
+
+    <nav class="nav-bas" data-page="duo"></nav>
+  </main>
+
+  <script src="stockage.js"></script>
+  <script src="xp.js"></script>
+  <script src="nav.js"></script>
+  <script src="joueurs.js"></script>
+  <script src="duo.js"></script>
+</body>
+</html>

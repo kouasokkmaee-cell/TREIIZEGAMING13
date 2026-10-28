@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B12">
+  <title>Matchmaking – TREIIZE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="match.css">
+</head>
+<body>
+  <main class="ecran">
+
+    <header class="entete">
+      <a class="mini-logo" href="index.html">TREIIZE<span class="vert">.</span></a>
+      <div class="statut"><span class="point" aria-hidden="true"></span>Recherche · Abidjan</div>
+      <button class="btn-icone" type="button" aria-label="Filtres (bientôt)">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg>
+      </button>
+    </header>
+
+    <!-- La carte du joueur est créée par js/match.js -->
+    <section class="zone-carte" id="zone-carte" aria-live="polite"></section>
+
+    <div class="boutons-action">
+      <button class="rond rond-passer" type="button" id="btn-passer" aria-label="Passer">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+      </button>
+      <button class="rond rond-gg" type="button" id="btn-gg" aria-label="GG, je like">GG</button>
+      <button class="rond rond-defi" type="button" id="btn-defi" aria-label="Lancer un défi">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav-bas" data-page="match"></nav>
+
+    <!-- Écran « C'est un match », caché au départ -->
+    <div class="match-plein" id="match-plein" role="dialog" aria-modal="true" aria-labelledby="match-titre" hidden>
+      <span class="onde" aria-hidden="true"></span>
+      <span class="onde onde-2" aria-hidden="true"></span>
+      <div class="duo">
+        <div class="avatar-match avatar-toi" id="avatar-toi">TOI</div>
+        <div class="avatar-match avatar-lui" id="avatar-lui">AY</div>
+      </div>
+      <div class="gg-geant">GG !</div>
+      <h2 class="match-titre" id="match-titre">C'EST UN MATCH</h2>
+      <p class="match-texte" id="match-texte"></p>
+      <div class="match-actions">
+        <a class="btn btn-principal" href="chat.html" id="btn-chat">ENVOYER UN DÉFI</a>
+        <button class="btn btn-secondaire" type="button" id="btn-continuer">Continuer à chercher</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="nav.js"></script>
+
+  <script src="stockage.js"></script>
+  <script src="xp.js"></script>
+  <script src="joueurs.js"></script>
+  <script src="match.js"></script>
+</body>
+</html>

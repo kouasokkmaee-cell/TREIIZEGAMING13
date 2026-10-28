@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B12">
+  <title>Le Hub – TREIIZE CITY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+  <main class="ecran">
+
+    <header class="entete">
+      <a class="logo" href="index.html" aria-label="TREIIZE, retour à l'accueil">TRE<span class="ii">II</span>ZE <small>CITY</small></a>
+      <a class="avatar-lien" href="profil.html" aria-label="Modifier mon profil">
+        <span class="avatar" id="avatar-petit">?</span>
+      </a>
+    </header>
+
+    <!-- Ton personnage -->
+    <section class="perso apparait" aria-label="Ton personnage">
+      <div class="perso-haut">
+        <div class="perso-avatar" id="perso-avatar" aria-hidden="true">?</div>
+        <div class="perso-infos">
+          <div class="perso-salut">Salut,</div>
+          <h1 class="perso-pseudo" id="perso-pseudo">Joueur</h1>
+        </div>
+        <div class="rang" id="rang">
+          <span class="rang-lettre" id="rang-lettre" aria-hidden="true">R</span>
+          <span class="rang-nom" id="rang-nom">Rookie</span>
+        </div>
+      </div>
+      <div class="xp-ligne">
+        <span><b id="xp-total">0</b> XP</span>
+        <span id="xp-suivant"></span>
+      </div>
+      <div class="xp-barre" role="progressbar" aria-label="Progression vers le rang suivant" aria-valuemin="0" aria-valuemax="100" id="xp-barre">
+        <div class="xp-rempli" id="xp-rempli"></div>
+      </div>
+    </section>
+
+    <!-- La carte de la ville -->
+    <section class="bloc apparait" style="animation-delay:.08s">
+      <div class="bloc-tete">
+        <h2 class="bloc-titre">La ville</h2>
+        <span class="saison">SAISON 1</span>
+      </div>
+      <div class="carte-ville" id="carte-ville">
+        <!-- Rangée 1 -->
+        <a class="quartier ouvert love" href="match.html" style="grid-area: love">
+          <span class="q-etat">OUVERT</span>
+          <span class="q-nom">Love Zone</span>
+          <span class="q-texte">Trouve ton Player 2</span>
+        </a>
+        <a class="quartier ouvert duo" href="duo.html" style="grid-area: p1">
+          <span class="q-etat">OUVERT</span>
+          <span class="q-nom">Duo Zone</span>
+          <span class="q-texte">Trouve ton duo</span>
+        </a>
+        <button class="quartier ferme" type="button" style="grid-area: arene" data-saison="2" data-nom="L'Arène">
+          <span class="q-etat"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>SAISON 2</span>
+          <span class="q-nom">L'Arène</span>
+          <span class="q-texte">Lives et tournois</span>
+        </button>
+
+        <!-- Rangée 2 -->
+        <button class="quartier ferme" type="button" style="grid-area: acad" data-saison="2" data-nom="L'Académie">
+          <span class="q-etat"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>SAISON 2</span>
+          <span class="q-nom">L'Académie</span>
+          <span class="q-texte">Apprendre à jouer</span>
+        </button>
+        <div class="quartier ici" style="grid-area: hub">
+          <span class="pin" aria-hidden="true"></span>
+          <span class="q-nom">Le Hub</span>
+          <span class="q-texte">Tu es ici</span>
+        </div>
+        <button class="quartier ferme" type="button" style="grid-area: pro" data-saison="3" data-nom="Le Quartier Pro">
+          <span class="q-etat"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>SAISON 3</span>
+          <span class="q-nom">Quartier Pro</span>
+          <span class="q-texte">Streamers, eSport</span>
+        </button>
+
+        <!-- Rangée 3 -->
+        <div class="parc" style="grid-area: p2" aria-hidden="true"></div>
+        <button class="quartier ferme" type="button" style="grid-area: marche" data-saison="3" data-nom="Le Marché">
+          <span class="q-etat"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>SAISON 3</span>
+          <span class="q-nom">Le Marché</span>
+          <span class="q-texte">Cartes et crédits</span>
+        </button>
+        <div class="parc" style="grid-area: p3" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Quêtes de la semaine -->
+    <section class="bloc apparait" style="animation-delay:.16s">
+      <div class="bloc-tete">
+        <h2 class="bloc-titre">Quêtes de la semaine</h2>
+        <span class="petit" id="quetes-compte"></span>
+      </div>
+      <ul class="quetes" id="quetes"></ul>
+    </section>
+
+    <!-- Badges -->
+    <section class="bloc apparait" style="animation-delay:.24s">
+      <h2 class="bloc-titre">Tes badges</h2>
+      <ul class="badges" id="badges"></ul>
+    </section>
+
+    <!-- Fil d'actu -->
+    <section class="bloc apparait" style="animation-delay:.32s">
+      <h2 class="bloc-titre">Ça se passe en ville</h2>
+      <ul class="fil" id="fil"></ul>
+    </section>
+
+    <p class="note-demo">Version de démonstration : l'actu de la ville est fictive.</p>
+
+    <nav class="nav-bas" data-page="hub"></nav>
+  </main>
+
+  <script src="stockage.js"></script>
+  <script src="xp.js"></script>
+  <script src="nav.js"></script>
+  <script src="hub.js"></script>
+</body>
+</html>

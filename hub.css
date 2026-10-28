@@ -1,0 +1,184 @@
+/* ===== Le Hub : la place centrale de TREIIZE CITY ===== */
+
+.entete { display: flex; align-items: center; justify-content: space-between; padding: 48px 24px 0; }
+.logo {
+  font-family: var(--titre); font-weight: 700; font-size: 22px; letter-spacing: 1px;
+  color: var(--texte); text-decoration: none;
+}
+.logo .ii { color: var(--accent); }
+.logo small { font-size: 12px; letter-spacing: 4px; color: var(--gris); margin-left: 4px; }
+.avatar-lien { text-decoration: none; }
+.avatar {
+  width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  background: var(--rose); color: var(--fond); font-family: var(--titre); font-weight: 700; font-size: 16px;
+}
+
+/* ---------- Carte du personnage ---------- */
+.perso {
+  margin: 18px 24px 0; padding: 16px; border-radius: 20px;
+  background: var(--carte); border: 1.5px solid var(--bord);
+  position: relative; overflow: hidden;
+}
+.perso::before { /* lignes de scan discrètes */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 2px, transparent 2px 4px);
+}
+.perso-haut { position: relative; display: flex; align-items: center; gap: 12px; }
+.perso-avatar {
+  width: 56px; height: 56px; border-radius: 16px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rose); color: var(--fond);
+  font-family: var(--titre); font-weight: 700; font-size: 22px; transform: rotate(-5deg);
+}
+.perso-infos { flex-grow: 1; min-width: 0; }
+.perso-salut { font-size: 13px; color: var(--gris); }
+.perso-pseudo {
+  margin: 0; font-family: var(--titre); font-weight: 700; font-size: 24px; line-height: 1.1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rang { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.rang-lettre {
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--fond); font-family: var(--titre); font-weight: 700; font-size: 20px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); /* hexagone */
+}
+.rang.monte .rang-lettre { animation: rangMonte .8s cubic-bezier(.2,.9,.3,1.4); }
+@keyframes rangMonte { 0% { transform: scale(1) rotate(0); } 50% { transform: scale(1.4) rotate(180deg); } 100% { transform: scale(1) rotate(360deg); } }
+.rang-nom { font-family: var(--titre); font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); }
+
+.xp-ligne { position: relative; display: flex; justify-content: space-between; margin-top: 14px; font-size: 13px; color: var(--gris); }
+.xp-ligne b { color: var(--texte); font-family: var(--titre); font-size: 16px; }
+.xp-barre { position: relative; margin-top: 8px; height: 10px; border-radius: 5px; background: var(--carte-2); overflow: hidden; }
+.xp-rempli {
+  height: 100%; width: 0; border-radius: 5px; background: var(--accent);
+  transition: width .8s cubic-bezier(.2,.9,.3,1.2);
+}
+
+/* ---------- Blocs ---------- */
+.bloc { padding: 26px 24px 0; }
+.bloc-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.bloc-titre { margin: 0 0 12px; font-family: var(--titre); font-weight: 700; font-size: 20px; }
+.saison {
+  font-family: var(--titre); font-weight: 700; font-size: 11px; letter-spacing: 2px;
+  padding: 4px 10px; border-radius: 6px; border: 1.5px solid var(--accent); color: var(--accent);
+}
+.petit { font-size: 12px; color: var(--gris); }
+
+/* ---------- La carte de la ville ---------- */
+.carte-ville {
+  display: grid; gap: 10px; padding: 10px; border-radius: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    "love p1 arene"
+    "acad hub pro"
+    "p2 marche p3";
+  /* les rues : un quadrillage en pointillés qui défile doucement */
+  background-color: #101019;
+  background-image:
+    linear-gradient(90deg, rgba(154,154,176,.18) 50%, transparent 50%),
+    linear-gradient(0deg, rgba(154,154,176,.18) 50%, transparent 50%);
+  background-size: 12px 2px, 2px 12px;
+  background-position: 0 33.5%, 33.5% 0;
+  background-repeat: repeat-x, repeat-y;
+  border: 1.5px solid var(--bord);
+  position: relative;
+}
+.quartier {
+  position: relative; min-height: 104px; padding: 10px; border-radius: 14px;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; text-align: left;
+  font-family: var(--corps); text-decoration: none; color: var(--texte); border: 1.5px solid var(--bord);
+  background: var(--carte); cursor: pointer; overflow: hidden;
+  transition: transform .15s ease;
+}
+.quartier:active { transform: scale(.96); }
+.q-etat {
+  position: absolute; left: 10px; top: 10px; display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--titre); font-weight: 700; font-size: 10px; letter-spacing: 1px;
+}
+.q-nom { font-family: var(--titre); font-weight: 700; font-size: 15px; line-height: 1.1; }
+.q-texte { font-size: 11px; color: var(--gris); line-height: 1.3; }
+
+/* Quartier ouvert : couleur pleine + respiration lumineuse */
+.quartier.ouvert.love { background: var(--rose); border-color: var(--rose); color: var(--fond); animation: lueurRose 2.4s ease-in-out infinite; }
+.quartier.ouvert .q-texte { color: rgba(11,11,18,.75); }
+.quartier.ouvert .q-etat { color: var(--fond); }
+@keyframes lueurRose { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,77,141,.5); } 50% { box-shadow: 0 0 0 6px rgba(255,77,141,0); } }
+
+/* Le Hub : « tu es ici » */
+.quartier.ici { border: 2px solid var(--accent); background: rgba(198,255,61,.1); cursor: default; align-items: center; justify-content: center; text-align: center; }
+.quartier.ici .q-texte { color: var(--accent); font-weight: 700; }
+.pin { position: relative; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); margin-bottom: 8px; }
+.pin::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--accent);
+  animation: ping 1.6s ease-out infinite;
+}
+@keyframes ping { from { transform: scale(.6); opacity: 1; } to { transform: scale(2.4); opacity: 0; } }
+
+/* Quartiers fermés : en pointillés, en attente de leur saison */
+.quartier.ferme { border-style: dashed; border-color: var(--bord-2); background: rgba(21,21,31,.85); }
+.quartier.ferme .q-etat { color: var(--gris); }
+.quartier.ferme .q-nom { color: var(--texte-2); }
+.quartier.ferme.secoue { animation: secoue .4s ease-in-out; }
+@keyframes secoue { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* Parcs décoratifs entre les quartiers */
+.parc {
+  border-radius: 14px; min-height: 60px;
+  background-color: rgba(198,255,61,.05);
+  background-image: radial-gradient(rgba(198,255,61,.35) 1.5px, transparent 1.6px);
+  background-size: 12px 12px;
+}
+
+/* ---------- Quêtes ---------- */
+.quetes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.quete {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px;
+  background: var(--carte); border: 1.5px solid var(--bord);
+}
+.quete.finie { border-color: rgba(198,255,61,.5); }
+.quete-case {
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+  border: 1.5px solid var(--bord-2); display: flex; align-items: center; justify-content: center;
+}
+.quete.finie .quete-case { background: var(--accent); border-color: var(--accent); color: var(--fond); animation: pop .4s ease-out; }
+.quete-corps { flex-grow: 1; min-width: 0; }
+.quete-titre { font-size: 14px; font-weight: 700; }
+.quete.finie .quete-titre { color: var(--texte-2); text-decoration: line-through; text-decoration-color: var(--accent); }
+.quete-barre { margin-top: 6px; height: 5px; border-radius: 3px; background: var(--carte-2); overflow: hidden; }
+.quete-barre span { display: block; height: 100%; background: var(--accent); border-radius: 3px; transition: width .5s ease; }
+.quete-xp { font-family: var(--titre); font-weight: 700; font-size: 13px; color: var(--accent); white-space: nowrap; }
+.quete-compte { font-size: 11px; color: var(--gris); margin-top: 4px; }
+
+/* ---------- Badges ---------- */
+.badges { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.badge { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.badge-forme {
+  width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: var(--carte-2); color: #55556A;
+}
+.badge.obtenu .badge-forme { background: var(--accent); color: var(--fond); animation: pop .5s ease-out; }
+.badge:nth-child(2).obtenu .badge-forme { background: var(--rose); }
+.badge:nth-child(3).obtenu .badge-forme { background: var(--cyan); }
+.badge:nth-child(4).obtenu .badge-forme { background: var(--orange); }
+.badge-nom { font-size: 11px; font-weight: 700; line-height: 1.25; color: var(--gris); }
+.badge.obtenu .badge-nom { color: var(--texte); }
+
+/* ---------- Fil d'actu ---------- */
+.fil { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.fil li {
+  display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px;
+  background: var(--carte); border: 1px solid var(--bord); animation: monter .45s ease-out both;
+}
+.fil-pastille {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--titre); font-weight: 700; font-size: 13px; color: var(--fond);
+}
+.fil-texte { font-size: 14px; line-height: 1.4; }
+.fil-texte strong { color: var(--texte); }
+.fil-quand { display: block; margin-top: 2px; font-size: 12px; color: var(--gris); }
+
+/* Duo Zone : le cœur de la ville, en vert */
+.quartier.ouvert.duo { background: var(--accent); border-color: var(--accent); color: var(--fond); animation: lueurVerte 2.4s ease-in-out infinite; }
+@keyframes lueurVerte { 0%, 100% { box-shadow: 0 0 0 0 rgba(198,255,61,.5); } 50% { box-shadow: 0 0 0 6px rgba(198,255,61,0); } }

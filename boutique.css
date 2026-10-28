@@ -1,0 +1,158 @@
+/* ===== Page Boutique ===== */
+
+.entete { display: flex; align-items: flex-end; justify-content: space-between; padding: 52px 24px 0; }
+.sur-titre { font-family: var(--titre); font-weight: 700; font-size: 13px; letter-spacing: 4px; color: var(--accent); }
+.titre { margin: 2px 0 0; font-family: var(--titre); font-weight: 700; font-size: 40px; line-height: 1; }
+.mm-badge {
+  padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--bord-2);
+  font-size: 12px; font-weight: 700; color: var(--texte-2);
+}
+.intro { margin: 10px 24px 0; font-size: 14px; line-height: 1.5; color: var(--gris); }
+
+.alerte {
+  margin: 16px 24px 0; display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 14px; border-radius: 14px;
+  background: rgba(255,77,141,.1); border: 1.5px solid rgba(255,77,141,.45); color: var(--rose);
+}
+.alerte svg { flex-shrink: 0; margin-top: 1px; }
+.alerte p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--texte-2); }
+.alerte strong { color: var(--texte); }
+
+/* Onglets de catégories */
+.onglets { display: flex; gap: 8px; padding: 18px 24px 4px; overflow-x: auto; }
+.onglet {
+  min-height: 40px; padding: 0 16px; border-radius: 999px; white-space: nowrap;
+  border: 1.5px solid var(--bord); background: transparent; color: var(--gris);
+  font-family: var(--titre); font-weight: 700; font-size: 13px; letter-spacing: .5px; cursor: pointer;
+}
+.onglet[aria-selected="true"] { background: var(--texte); border-color: var(--texte); color: var(--fond); }
+
+/* Grille de cartes cadeaux */
+.grille-produits {
+  flex-grow: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px; padding: 16px 24px 8px; align-content: start;
+}
+.produit {
+  display: flex; flex-direction: column; gap: 8px; text-align: left;
+  background: none; border: none; padding: 0; color: var(--texte); cursor: pointer;
+  animation: monter .45s ease-out both;
+}
+.produit:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 16px; }
+
+/* Le visuel « carte » */
+.carte-cadeau {
+  position: relative; aspect-ratio: 1.58; border-radius: 14px; overflow: hidden;
+  padding: 12px; display: flex; flex-direction: column; justify-content: space-between;
+  color: var(--fond);
+  background-image:
+    radial-gradient(circle at 85% 15%, rgba(255,255,255,.35) 0 18%, transparent 19%),
+    repeating-linear-gradient(135deg, rgba(11,11,18,.08) 0 6px, transparent 6px 14px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  transition: transform .25s ease;
+}
+.produit:hover .carte-cadeau { transform: translateY(-4px) rotate(-1.5deg); }
+.carte-cadeau::after { /* reflet qui passe en boucle */
+  content: ''; position: absolute; top: -20%; bottom: -20%; left: 0; width: 40px;
+  background: rgba(255,255,255,.4); transform: translateX(-200%) skewX(-20deg);
+  animation: reflet 3.5s ease-in-out infinite;
+}
+@keyframes reflet { 0%, 60% { transform: translateX(-200%) skewX(-20deg); } 100% { transform: translateX(600%) skewX(-20deg); } }
+.carte-cadeau .cc-haut { display: flex; justify-content: space-between; align-items: center; }
+.cc-type { font-family: var(--titre); font-weight: 700; font-size: 10px; letter-spacing: 1.5px; opacity: .8; }
+.cc-puce { width: 22px; height: 16px; border-radius: 4px; background: rgba(11,11,18,.25); }
+.cc-nom { font-family: var(--titre); font-weight: 700; font-size: 17px; line-height: 1.05; }
+
+.produit-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+.produit-nom { font-size: 13px; font-weight: 700; }
+.produit-prix { font-size: 12px; color: var(--gris); white-space: nowrap; }
+.populaire {
+  position: absolute; right: 10px; bottom: 10px; padding: 3px 8px; border-radius: 6px;
+  background: var(--fond); color: var(--accent); font-family: var(--titre); font-weight: 700; font-size: 10px; letter-spacing: 1px;
+}
+
+.note-demo { margin: 8px 24px 16px; font-size: 11px; color: #8A8AA0; text-align: center; }
+
+/* ===== Fenêtre d'achat ===== */
+.fenetre {
+  position: fixed; inset: 0; z-index: 20; background: rgba(6,6,10,.8);
+  display: flex; align-items: flex-end; justify-content: center; animation: fondu .2s ease-out both;
+}
+.fenetre[hidden] { display: none; }
+@keyframes fondu { from { opacity: 0; } to { opacity: 1; } }
+.feuille {
+  position: relative; width: 100%; max-width: 430px; max-height: 92vh; overflow-y: auto;
+  padding: 24px 20px 28px; border-radius: 24px 24px 0 0;
+  background: var(--carte); border-top: 1px solid var(--bord);
+  animation: glisse .35s cubic-bezier(.2,.9,.3,1.1) both;
+}
+@keyframes glisse { from { transform: translateY(100%); } to { transform: none; } }
+.fermer { position: absolute; right: 16px; top: 16px; }
+
+#etape-achat { display: flex; flex-direction: column; gap: 20px; }
+#etape-achat[hidden] { display: none; }
+.achat-haut { display: flex; align-items: center; gap: 14px; padding-right: 50px; }
+.mini-carte { width: 84px; flex-shrink: 0; aspect-ratio: 1.58; border-radius: 10px; animation: pop .4s ease-out both; }
+.achat-type { font-family: var(--titre); font-weight: 700; font-size: 11px; letter-spacing: 2px; color: var(--gris); }
+.achat-nom { margin: 2px 0 0; font-family: var(--titre); font-weight: 700; font-size: 22px; line-height: 1.1; }
+
+.groupe { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; border: none; min-width: 0; }
+.groupe legend { padding: 0; margin-bottom: 10px; }
+
+.montants { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.montant {
+  min-height: 60px; border-radius: 12px; border: 1.5px solid var(--bord);
+  background: var(--fond); color: var(--texte); cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+}
+.montant b { font-family: var(--titre); font-size: 16px; }
+.montant small { font-size: 11px; color: var(--gris); }
+.montant[aria-pressed="true"] { border-color: var(--accent); background: rgba(198,255,61,.1); animation: pop .3s ease-out; }
+.montant[aria-pressed="true"] small { color: var(--accent); }
+
+.operateurs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.operateur {
+  min-height: 48px; border-radius: 12px; border: 1.5px solid var(--bord);
+  background: var(--fond); color: var(--texte); font-weight: 700; font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; gap: 10px; padding: 0 12px;
+}
+.operateur .rond-couleur { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.operateur[aria-pressed="true"] { border-color: var(--accent); background: rgba(198,255,61,.1); }
+
+.tel { display: flex; gap: 8px; }
+.indicatif {
+  display: flex; align-items: center; padding: 0 14px; border-radius: 12px;
+  border: 1.5px solid var(--bord); background: var(--fond); color: var(--texte-2); font-weight: 700;
+}
+.tel .champ { background: var(--fond); letter-spacing: 1px; }
+.erreur { margin: 0; font-size: 13px; color: var(--rose); }
+
+.btn-payer { min-height: 58px; font-size: 17px; }
+
+/* Étapes « en attente » et « réussi » */
+.etape-centre { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 24px 4px 4px; }
+.etape-centre[hidden] { display: none; }
+.etape-titre { margin: 8px 0 0; font-family: var(--titre); font-weight: 700; font-size: 24px; }
+.etape-texte { margin: 0; font-size: 14px; line-height: 1.5; color: var(--texte-2); max-width: 300px; }
+.etape-petit { margin: 0; font-size: 12px; color: var(--gris); max-width: 300px; }
+
+.chargeur { display: grid; grid-template-columns: repeat(2, 22px); gap: 6px; margin-top: 8px; }
+.chargeur span { width: 22px; height: 22px; border-radius: 5px; background: var(--accent); animation: tetris 1.2s ease-in-out infinite; }
+.chargeur span:nth-child(2) { background: var(--rose); animation-delay: .15s; }
+.chargeur span:nth-child(3) { background: var(--cyan); animation-delay: .45s; }
+.chargeur span:nth-child(4) { background: var(--orange); animation-delay: .3s; }
+@keyframes tetris { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(.4) rotate(90deg); opacity: .4; } }
+
+.succes {
+  width: 88px; height: 88px; border-radius: 50%; margin-top: 4px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--fond);
+  animation: claque .5s ease-out both; box-shadow: 0 0 0 10px rgba(198,255,61,.15);
+}
+@keyframes claque { 0% { transform: scale(2.2); opacity: 0; } 60% { transform: scale(.9); opacity: 1; } 100% { transform: scale(1); } }
+.code-boite {
+  width: 100%; margin-top: 6px; padding: 14px; border-radius: 14px;
+  border: 1.5px dashed var(--accent); background: rgba(198,255,61,.06);
+}
+.code-boite small { display: block; font-size: 10px; letter-spacing: 2px; font-weight: 700; color: var(--gris); }
+.code-boite code { display: block; margin-top: 6px; font-family: var(--titre); font-weight: 700; font-size: 22px; letter-spacing: 3px; color: var(--accent); }
+#btn-terminer { width: 100%; margin-top: 8px; }

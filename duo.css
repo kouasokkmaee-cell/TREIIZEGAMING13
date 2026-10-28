@@ -1,0 +1,127 @@
+/* ===== DUO ZONE : trouver un coéquipier d'ici, dispo maintenant ===== */
+
+.ii { color: var(--accent); }
+.entete { padding: 48px 24px 0; }
+.sur-titre { font-family: var(--titre); font-weight: 700; font-size: 13px; letter-spacing: 4px; color: var(--gris); }
+.titre { margin: 2px 0 0; font-family: var(--titre); font-weight: 700; font-size: 44px; line-height: 1; color: var(--accent); }
+.intro { margin: 10px 0 0; font-size: 15px; line-height: 1.5; color: var(--texte-2); }
+
+.etape { flex-grow: 1; padding: 22px 24px 8px; display: flex; flex-direction: column; gap: 22px; }
+.etape[hidden] { display: none; }
+.groupe { margin: 0; padding: 0; border: none; min-width: 0; display: flex; flex-direction: column; }
+.groupe legend { padding: 0; margin-bottom: 10px; }
+
+/* Choix du jeu : tuiles */
+.choix-grille { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tuile {
+  min-height: 64px; padding: 8px; border-radius: 14px; cursor: pointer;
+  border: 1.5px solid var(--bord); background: var(--carte); color: var(--texte-2);
+  font-family: var(--titre); font-weight: 700; font-size: 13px; line-height: 1.15;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  transition: transform .15s;
+}
+.tuile:active { transform: scale(.95); }
+.tuile[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--fond); animation: pop .35s ease-out; }
+
+.choix-ligne { display: flex; gap: 8px; flex-wrap: wrap; }
+.pastille {
+  flex: 1 1 0; min-width: 0; min-height: 44px; padding: 0 4px; border-radius: 12px; cursor: pointer;
+  border: 1.5px solid var(--bord); background: transparent; color: var(--gris);
+  font-family: var(--corps); font-weight: 700; font-size: 12px;
+}
+.pastille[aria-pressed="true"] { border-color: var(--rose); background: rgba(255,77,141,.14); color: var(--texte); animation: pop .3s ease-out; }
+
+/* Interrupteur micro */
+.micro {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px;
+  background: var(--carte); border: 1.5px solid var(--bord); cursor: pointer; position: relative;
+}
+.micro-texte { flex-grow: 1; display: flex; flex-direction: column; gap: 2px; }
+.micro-texte strong { font-size: 15px; }
+.micro-texte small { font-size: 12px; color: var(--gris); }
+.micro input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.interrupteur { width: 52px; height: 30px; border-radius: 15px; background: var(--bord-2); position: relative; flex-shrink: 0; transition: background .2s; }
+.interrupteur::after { content: ''; position: absolute; left: 3px; top: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--texte); transition: transform .2s; }
+.micro input:checked + .interrupteur { background: var(--accent); }
+.micro input:checked + .interrupteur::after { transform: translateX(22px); background: var(--fond); }
+.micro input:focus-visible + .interrupteur { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.btn-go { min-height: 64px; font-size: 19px; animation: pulse 2s ease-out infinite; }
+.point-live { width: 12px; height: 12px; border-radius: 50%; background: var(--rose); animation: respire 1s ease-in-out infinite; }
+
+/* ===== Recherche : radar ===== */
+.etape-radar { align-items: center; justify-content: center; text-align: center; padding-top: 30px; }
+.radar {
+  position: relative; width: 260px; height: 260px; border-radius: 50%;
+  border: 2px solid rgba(198,255,61,.45);
+  background: repeating-radial-gradient(circle, transparent 0 42px, rgba(198,255,61,.14) 43px 44px), #0E130B;
+}
+.radar-balai { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(rgba(198,255,61,.5), transparent 70deg); animation: tourne 1.6s linear infinite; }
+@keyframes tourne { to { transform: rotate(360deg); } }
+.radar-anneau { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; border: 2px solid var(--accent); animation: anneau 1.8s ease-out infinite; }
+.radar-anneau.a2 { animation-delay: .9s; }
+@keyframes anneau { from { transform: scale(.6); opacity: 1; } to { transform: scale(4.2); opacity: 0; } }
+.radar-moi {
+  position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center; background: var(--rose); color: var(--fond);
+  font-family: var(--titre); font-weight: 700; font-size: 20px; z-index: 2;
+}
+.radar-pt { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); opacity: 0; animation: ping-pt 1.6s ease-out infinite; }
+.p1 { left: 22%; top: 28%; } .p2 { left: 70%; top: 22%; animation-delay: .4s; } .p3 { left: 74%; top: 68%; animation-delay: .8s; background: var(--cyan); box-shadow: 0 0 14px var(--cyan); } .p4 { left: 26%; top: 72%; animation-delay: 1.2s; }
+@keyframes ping-pt { 0%, 100% { opacity: 0; transform: scale(.4); } 20%, 60% { opacity: 1; transform: scale(1); } }
+.recherche-titre { margin: 8px 0 0; font-family: var(--titre); font-weight: 700; font-size: 22px; }
+.recherche-texte { margin: 0; font-size: 14px; color: var(--gris); min-height: 20px; }
+
+/* ===== Résultats ===== */
+.resultats-tete { display: flex; justify-content: space-between; align-items: baseline; }
+.bloc-titre { margin: 0; font-family: var(--titre); font-weight: 700; font-size: 22px; }
+.lien { background: none; border: none; color: var(--accent); font-weight: 700; font-size: 14px; cursor: pointer; min-height: 44px; }
+.resultats-filtre { margin: -14px 0 0; font-size: 13px; color: var(--gris); }
+.joueurs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.joueur {
+  display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px;
+  background: var(--carte); border: 1.5px solid var(--bord); animation: monter .4s ease-out both;
+}
+.joueur.invite { border-color: var(--accent); }
+.j-av {
+  position: relative; width: 52px; height: 52px; border-radius: 15px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--titre); font-weight: 700; font-size: 18px; color: var(--fond);
+}
+.j-av::after { content: ''; position: absolute; right: -3px; bottom: -3px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--carte); }
+.j-infos { flex-grow: 1; min-width: 0; }
+.j-nom { font-family: var(--titre); font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 6px; }
+.j-rang { font-size: 10px; letter-spacing: 1px; padding: 2px 6px; border-radius: 4px; background: var(--carte-2); color: var(--accent); }
+.j-meta { font-size: 12px; color: var(--gris); margin-top: 2px; }
+.j-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.j-tags span { font-size: 10px; font-weight: 700; padding: 3px 7px; border-radius: 999px; border: 1px solid var(--bord-2); color: var(--texte-2); }
+.j-tags .ok { border-color: rgba(198,255,61,.6); color: var(--accent); }
+.j-btn { min-height: 44px; padding: 0 14px; font-size: 13px; letter-spacing: 0; flex-shrink: 0; }
+.j-btn[disabled] { background: transparent; border-color: var(--accent); color: var(--accent); cursor: default; }
+.vide { margin: 0; font-size: 14px; line-height: 1.5; color: var(--gris); text-align: center; padding: 20px 0; }
+
+/* ===== Lobby ===== */
+.lobby {
+  padding: 24px 20px; border-radius: 24px; text-align: center;
+  background: var(--carte); border: 2px solid var(--accent);
+  box-shadow: 0 0 0 8px rgba(198,255,61,.06);
+  display: flex; flex-direction: column; gap: 14px; animation: pop .45s ease-out;
+}
+.lobby-sur { margin: 0; font-family: var(--titre); font-weight: 700; font-size: 12px; letter-spacing: 4px; color: var(--accent); }
+.lobby-titre { margin: 0; font-family: var(--titre); font-weight: 700; font-size: 26px; }
+.lobby-duo { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.lobby-joueur { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; width: 120px; }
+.lobby-av {
+  width: 72px; height: 72px; border-radius: 20px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--titre); font-weight: 700; font-size: 24px; color: var(--fond); background: var(--rose);
+}
+.lobby-joueur:first-child .lobby-av { animation: arriveG .5s cubic-bezier(.2,.9,.3,1.3) both; }
+.lobby-joueur:last-child .lobby-av { animation: arriveD .5s cubic-bezier(.2,.9,.3,1.3) both; }
+@keyframes arriveG { from { transform: translateX(-80px) rotate(-20deg); opacity: 0; } to { transform: rotate(-6deg); opacity: 1; } }
+@keyframes arriveD { from { transform: translateX(80px) rotate(20deg); opacity: 0; } to { transform: rotate(6deg); opacity: 1; } }
+.lobby-joueur strong { font-family: var(--titre); font-size: 15px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lobby-joueur code { font-size: 12px; color: var(--accent); background: rgba(198,255,61,.08); padding: 4px 8px; border-radius: 6px; max-width: 100%; overflow-wrap: anywhere; }
+.lobby-vs { font-family: var(--titre); font-weight: 700; font-size: 28px; color: var(--accent); }
+.lobby-jeu { margin: 0; font-size: 14px; color: var(--texte-2); }
+.lobby-etapes { margin: 0; padding: 14px 14px 14px 34px; text-align: left; border-radius: 14px; background: var(--fond); font-size: 14px; line-height: 1.7; color: var(--texte-2); }
+.lobby-securite { margin: 0; font-size: 12px; line-height: 1.5; color: var(--gris); }

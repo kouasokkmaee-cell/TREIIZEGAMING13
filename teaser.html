@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B12">
+  <title>TREIIZE CITY – La ville du gaming ivoirien ouvre bientôt</title>
+  <meta name="description" content="Rencontre des gamers, monte en niveau, représente ta commune. Réserve ton pseudo avant l'ouverture de TREIIZE CITY.">
+  <!-- Aperçu quand le lien est partagé sur WhatsApp, Facebook… -->
+  <meta property="og:title" content="TREIIZE CITY ouvre bientôt">
+  <meta property="og:description" content="La ville du gaming ivoirien. Réserve ton pseudo avant tout le monde.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="teaser.css">
+</head>
+<body class="teaser">
+
+  <!-- Bandeau d'invitation (affiché si on arrive par un lien de parrainage) -->
+  <div class="invite" id="invite" hidden></div>
+
+  <!-- ============ 1. L'OUVERTURE ============ -->
+  <header class="hero">
+    <!-- ===== Les scènes animées (originales, inspirées de l'ambiance de chaque jeu) ===== -->
+    <div class="scenes" aria-hidden="true">
+
+      <!-- 1. Ambiance tactique (Call of Duty) : radar, viseur, traînées de balles, fumée -->
+      <div class="scene s-tactique active" data-nom="CALL OF DUTY">
+        <span class="fumee f1"></span><span class="fumee f2"></span><span class="fumee f3"></span>
+        <div class="radar">
+          <span class="radar-balai"></span>
+          <span class="radar-point rp1"></span><span class="radar-point rp2"></span><span class="radar-point rp3"></span>
+        </div>
+        <span class="trace tr1"></span><span class="trace tr2"></span><span class="trace tr3"></span>
+        <svg class="viseur" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="2"/><path d="M50 8v24M50 68v24M8 50h24M68 50h24" stroke="currentColor" stroke-width="2.5"/><circle cx="50" cy="50" r="2.5" fill="currentColor"/></svg>
+      </div>
+
+      <!-- 2. Ambiance battle royale (Fortnite) : tempête qui se referme, largage, construction -->
+      <div class="scene s-royale" data-nom="FORTNITE">
+        <span class="tempete"></span>
+        <div class="largage">
+          <svg viewBox="0 0 60 90"><path d="M4 30 Q30 -6 56 30 Z" fill="#3DF5FF"/><path d="M4 30 L24 62 M56 30 L36 62 M30 30 L30 62" stroke="#3DF5FF" stroke-width="1.5"/><rect x="16" y="60" width="28" height="24" rx="3" fill="#FFB23D"/><path d="M16 72h28M30 60v24" stroke="#0B0B12" stroke-width="2"/></svg>
+        </div>
+        <div class="construction">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- 3. Ambiance stade (eFootball, EA FC) : projecteurs, terrain, ballon qui file au but -->
+      <div class="scene s-stade" data-nom="eFOOTBALL · EA FC">
+        <span class="projecteur pj1"></span><span class="projecteur pj2"></span>
+        <div class="tribune"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="terrain"><span class="but"></span></div>
+        <span class="ballon"></span>
+      </div>
+
+      <!-- 4. Ambiance ville ouverte (GTA) : rue de nuit, phares, néons -->
+      <div class="scene s-ville" data-nom="GTA">
+        <span class="neon n1">BABI</span>
+        <span class="neon n2">24/24</span>
+        <span class="neon n3">GARAGE</span>
+        <div class="route"><span class="marquage"></span></div>
+        <span class="phare ph1"></span><span class="phare ph2"></span><span class="phare ph3"></span>
+      </div>
+    </div>
+    <div class="voile" aria-hidden="true"></div>
+
+    <!-- Nom du jeu de la scène en cours + petits points -->
+    <div class="scene-info" aria-hidden="true">
+      <span class="scene-point"></span><span id="scene-nom">CALL OF DUTY</span>
+      <span class="scene-dots" id="scene-dots"><i class="on"></i><i></i><i></i><i></i></span>
+    </div>
+
+    <div class="ville" id="ville" aria-hidden="true"></div>
+
+    <div class="hero-contenu">
+      <div class="hero-haut">
+        <span class="pays">CÔTE D'IVOIRE</span>
+        <span class="badge-18">18+</span>
+      </div>
+
+      <p class="hero-sur">LA VILLE DU GAMING IVOIRIEN</p>
+      <h1 class="logo">
+        <span class="glitch glitch-a" aria-hidden="true">TREIIZE</span>
+        <span class="glitch glitch-b" aria-hidden="true">TREIIZE</span>
+        <span class="logo-base">TRE<span class="ii">II</span>ZE</span>
+        <span class="logo-city">CITY</span>
+      </h1>
+      <p class="hero-texte">Rencontre des gamers. Monte en niveau. Représente ta commune.<br><strong>Trouve ton Player 2.</strong></p>
+
+      <div class="compte" aria-live="off">
+        <p class="compte-titre">OUVERTURE DES PORTES DANS</p>
+        <div class="compte-chiffres" id="compte" role="timer" aria-label="Temps avant l'ouverture">
+          <div class="case"><span id="c-j">00</span><small>JOURS</small></div>
+          <div class="sep" aria-hidden="true">:</div>
+          <div class="case"><span id="c-h">00</span><small>HEURES</small></div>
+          <div class="sep" aria-hidden="true">:</div>
+          <div class="case"><span id="c-m">00</span><small>MIN</small></div>
+          <div class="sep" aria-hidden="true">:</div>
+          <div class="case"><span id="c-s">00</span><small>SEC</small></div>
+        </div>
+        <p class="compte-date" id="compte-date"></p>
+      </div>
+
+      <a class="btn btn-principal btn-hero" href="#reserver">
+        RÉSERVE TON PSEUDO
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Bandeau des jeux -->
+  <div class="bandeau" aria-label="Jeux">
+    <div class="bandeau-piste" id="bandeau"></div>
+  </div>
+
+  <main>
+    <!-- ============ 2. LES QUARTIERS ============ -->
+    <section class="section" aria-labelledby="t-quartiers">
+      <p class="sur-titre revele">BIENVENUE EN VILLE</p>
+      <h2 class="titre-section revele" id="t-quartiers">Six quartiers.<br>Une seule ville.</h2>
+      <p class="intro revele">Pas une simple appli : une ville où ton personnage gagne de l'XP partout où il passe.</p>
+
+      <div class="quartiers">
+        <article class="quartier revele q-love">
+          <span class="q-num">01</span>
+          <h3>Love Zone</h3>
+          <p>Rencontre des gamers qui jouent aux mêmes jeux que toi. On se défie d'abord, on craque ensuite.</p>
+        </article>
+        <article class="quartier revele q-hub">
+          <span class="q-num">02</span>
+          <h3>Le Hub</h3>
+          <p>La place centrale : l'actu de la ville, le clip de la semaine, la carte des salles de jeux.</p>
+        </article>
+        <article class="quartier revele q-arene">
+          <span class="q-num">03</span>
+          <h3>L'Arène</h3>
+          <p>Les lives des streamers ivoiriens, les tournois et la ligue des campus.</p>
+        </article>
+        <article class="quartier revele q-acad">
+          <span class="q-num">04</span>
+          <h3>L'Académie</h3>
+          <p>Tu débutes ? Des leçons par jeu et des coachs de la communauté, sans jugement.</p>
+        </article>
+        <article class="quartier revele q-pro">
+          <span class="q-num">05</span>
+          <h3>Le Quartier Pro</h3>
+          <p>Pour ceux qui font du gaming leur métier : streamers, joueurs eSport, créateurs, studios.</p>
+        </article>
+        <article class="quartier revele q-marche">
+          <span class="q-num">06</span>
+          <h3>Le Marché</h3>
+          <p>Recharge tes jeux et tes consoles, payé en Mobile Money.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 3. LA GUERRE DES COMMUNES ============ -->
+    <section class="section section-communes" aria-labelledby="t-communes">
+      <p class="sur-titre revele">LA GUERRE DES COMMUNES</p>
+      <h2 class="titre-section revele" id="t-communes">Choisis ton camp.</h2>
+      <p class="intro revele">Chaque victoire rapporte des points à ta commune. À la fin de chaque saison, une seule règne sur la ville.</p>
+      <div class="communes revele" id="communes" role="group" aria-label="Choisis ta commune"></div>
+      <p class="commune-choix" id="commune-choix" aria-live="polite"></p>
+    </section>
+
+    <!-- ============ 4. COMMENT ÇA MARCHE ============ -->
+    <section class="section" aria-labelledby="t-etapes">
+      <p class="sur-titre revele">AVANT TOUT LE MONDE</p>
+      <h2 class="titre-section revele" id="t-etapes">Entre en premier.</h2>
+      <ol class="etapes">
+        <li class="revele"><span class="etape-num">1</span><div><strong>Réserve ton pseudo</strong><p>Personne ne pourra te le prendre.</p></div></li>
+        <li class="revele"><span class="etape-num">2</span><div><strong>Invite tes potes</strong><p>Partage ton lien sur WhatsApp et TikTok.</p></div></li>
+        <li class="revele"><span class="etape-num">3</span><div><strong>Débloque le badge Fondateur</strong><p>Un badge que personne ne pourra plus jamais obtenir après l'ouverture.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ============ 5. RÉSERVATION ============ -->
+    <section class="section section-reserver" id="reserver" aria-labelledby="t-reserver">
+      <div class="reserver-boite revele">
+
+        <form id="form-reserver" novalidate>
+          <p class="sur-titre">ACCÈS FONDATEUR</p>
+          <h2 class="titre-section" id="t-reserver">Réserve ton pseudo</h2>
+
+          <div class="groupe">
+            <label class="etiquette" for="r-pseudo">Pseudo de jeu</label>
+            <input class="champ" id="r-pseudo" type="text" maxlength="20" autocomplete="nickname" placeholder="ex : Babi_Sniper225" required>
+            <p class="erreur" id="err-pseudo" hidden>Ton pseudo doit faire 3 à 20 caractères (lettres, chiffres, _ ou -).</p>
+          </div>
+
+          <div class="groupe">
+            <label class="etiquette" for="r-commune">Ta commune ou ta ville</label>
+            <select class="champ" id="r-commune" required></select>
+          </div>
+
+          <div class="groupe">
+            <label class="etiquette" for="r-jeu">Ton jeu favori</label>
+            <select class="champ" id="r-jeu" required>
+              <option value="cod">Call of Duty</option>
+              <option value="fortnite">Fortnite</option>
+              <option value="fc">FIFA / EA FC</option>
+              <option value="gta">GTA</option>
+              <option value="freefire">Free Fire</option>
+              <option value="efootball">eFootball</option>
+              <option value="autre">Un autre jeu</option>
+            </select>
+          </div>
+
+          <label class="majeur">
+            <input type="checkbox" id="r-majeur">
+            <span>J'ai <strong>18 ans ou plus</strong>.</span>
+          </label>
+          <p class="erreur" id="err-majeur" hidden>TREIIZE CITY est réservée aux 18 ans et plus.</p>
+
+          <button class="btn btn-principal btn-reserver" type="submit">RÉSERVER MON PSEUDO</button>
+        </form>
+
+        <!-- Écran après réservation -->
+        <div class="succes" id="succes" hidden>
+          <div class="badge-fondateur" aria-hidden="true">
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg>
+          </div>
+          <p class="sur-titre">BADGE FONDATEUR DÉBLOQUÉ</p>
+          <h2 class="titre-section" tabindex="-1" id="succes-titre"></h2>
+          <p class="intro" id="succes-texte"></p>
+
+          <div class="lien-boite">
+            <span class="etiquette">Ton lien de parrainage</span>
+            <code id="lien-parrain"></code>
+          </div>
+          <div class="partage">
+            <a class="btn btn-whatsapp" id="btn-whatsapp" href="#" target="_blank" rel="noopener">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+              PARTAGER SUR WHATSAPP
+            </a>
+            <button class="btn btn-secondaire" type="button" id="btn-copier">Copier le lien</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="pied-logo">TRE<span class="ii">II</span>ZE <small>CITY</small></div>
+    <p>@treiize sur TikTok, Instagram, Facebook et X</p>
+    <p class="pied-petit">Réservé aux 18 ans et plus · Fait à Abidjan</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="teaser.js"></script>
+</body>
+</html>

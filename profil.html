@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B12">
+  <title>Ton profil gamer – TREIIZE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="profil.css">
+</head>
+<body>
+  <main class="ecran">
+
+    <header class="entete">
+      <a class="btn-icone" href="index.html" aria-label="Retour à l'accueil">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></svg>
+      </a>
+      <div class="xp">
+        <div class="xp-texte"><span>CRÉATION DU PERSO</span><span class="vert">XP <span id="xp-valeur">30</span>%</span></div>
+        <div class="xp-barre" role="progressbar" aria-label="Profil complété" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" id="xp-barre">
+          <div class="xp-rempli" id="xp-rempli"></div>
+        </div>
+      </div>
+    </header>
+
+    <form class="formulaire" id="formulaire" novalidate>
+      <div class="apparait">
+        <h1 class="titre">Ton profil <span class="vert">gamer</span></h1>
+        <p class="sous-titre">Plus il est complet, meilleurs seront tes matchs.</p>
+      </div>
+
+      <div class="groupe apparait" style="animation-delay:.08s">
+        <label class="etiquette" for="pseudo">Pseudo de jeu</label>
+        <input class="champ" id="pseudo" name="pseudo" type="text" maxlength="20" autocomplete="nickname" placeholder="ex : Babi_Sniper225">
+      </div>
+
+      <div class="groupe apparait" style="animation-delay:.12s">
+        <label class="etiquette" for="id-jeu">Ton identifiant dans le jeu</label>
+        <input class="champ" id="id-jeu" name="id-jeu" type="text" maxlength="32" autocomplete="off" placeholder="Epic, PSN, Xbox, Activision…">
+        <p class="aide">Pour que ton duo puisse t'ajouter dans le jeu. Jamais ton mot de passe.</p>
+      </div>
+
+      <fieldset class="groupe apparait" style="animation-delay:.16s">
+        <legend class="etiquette">Tes jeux</legend>
+        <div class="puces" id="liste-jeux"></div>
+      </fieldset>
+
+      <fieldset class="groupe apparait" style="animation-delay:.24s">
+        <legend class="etiquette">Tu joues sur</legend>
+        <div class="grille-4" id="liste-plateformes"></div>
+      </fieldset>
+
+      <fieldset class="groupe apparait" style="animation-delay:.32s">
+        <legend class="etiquette">Ton style</legend>
+        <div class="ligne-3" id="liste-styles"></div>
+      </fieldset>
+
+      <label class="majeur apparait" style="animation-delay:.4s">
+        <input type="checkbox" id="majeur">
+        <span>Je confirme avoir <strong>18 ans ou plus</strong> et j'accepte les règles de respect de la communauté.</span>
+      </label>
+    </form>
+
+    <div class="pied">
+      <button class="btn btn-principal btn-lancer" type="submit" form="formulaire" id="btn-lancer" disabled>
+        <span class="brillance" aria-hidden="true"></span>
+        <span id="btn-texte">CHOISIS UN JEU ET CONFIRME TON ÂGE</span>
+      </button>
+    </div>
+  </main>
+
+  <script src="stockage.js"></script>
+  <script src="xp.js"></script>
+  <script src="profil.js"></script>
+</body>
+</html>
